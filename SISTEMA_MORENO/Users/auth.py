@@ -1,40 +1,48 @@
-from rest_framework.exceptions import AuthenticationFailed, APIException
+from rest_framework.exceptions import APIException
 from .models import User
 from django.contrib.auth.hashers import check_password, make_password
 
 class Authentication:
-     def signin(email = None, password = None):
-          user_exists = User.objects.filter(email = email).exists()
-          exception_auth = APIException("Usuário ou senha inválidos")
 
-          if not user_exists:
-               raise exception_auth
-          
-          user = User.objects.filter(email = email).first()
-          
-          if not check_password(password, user.password):
-               raise exception_auth
-          
-          return user
-     def signup(email = None, password = None, nome = None):
-          
-          if not nome or nome == '':
-               raise APIException("O nome é obrigatório")
-          if not email or email == '':
-               raise APIException("O email é obrigatório")
-          if not password or password == '':
-               raise APIException("A senha é obrigatória")
-          
-          password_hash = make_password(password)
-          
-          created_user = User.objects.create(
-               email = email,
-               password = password_hash,
-               nome = nome,
-               #centro_de_custo = centro_de_custo,
+    @staticmethod
+    def signin(username=None, password=None):
+        if not username or not password:
+            raise APIException("O username e a senha são obrigatórios")
 
-          )
-          
-          return created_user
-     
-          
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            raise APIException("Usuário ou senha inválidos")
+
+        if not check_password(password, user.password):
+            raise APIException("Usuário ou senha inválidos")
+
+        return user
+
+    @staticmethod
+    def signup(username=None, email=None, password=None, nome=None):
+        if not username or username == '':
+            raise APIException("O username é obrigatório")
+        if not nome or nome == '':
+            raise APIException("O nome é obrigatório")
+        if not email or email == '':
+            raise APIException("O email é obrigatório")
+        if not password or password == '':
+            raise APIException("A senha é obrigatória")
+
+        if User.objects.filter(username=username).exists():
+            raise APIException("Username já cadastrado")
+        if User.objects.filter(email=email).exists():
+            raise APIException("Email já cadastrado")
+
+        password_hash = make_password(password)
+
+        created_user = User.objects.create(
+            username=username,
+            email=email,
+            password=password_hash,
+            nome=nome,
+            # centro_de_custo pode ser adicionado aqui se quiser
+        )
+
+        return created_user

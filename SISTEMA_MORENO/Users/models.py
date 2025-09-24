@@ -3,16 +3,18 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, **extra_fields):
+    def create_user(self, username, email, password=None, **extra_fields):
+        if not username:
+            raise ValueError("O username é obrigatório")
         if not email:
             raise ValueError("O email é obrigatório")
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        user = self.model(username=username, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password=None, **extra_fields):
+    def create_superuser(self, username, email, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -21,11 +23,11 @@ class UserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("O superusuário precisa ter is_superuser=True.")
 
-        return self.create_user(email, password, **extra_fields)
+        return self.create_user(username, email, password, **extra_fields)
 
 
 class User(AbstractUser, PermissionsMixin):
-    username = None  # Removemos o username
+    username = models.CharField(max_length=150, unique=True, default='usuario_default')
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
@@ -45,13 +47,13 @@ class User(AbstractUser, PermissionsMixin):
         blank=True
     )
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email", "nome"]
 
     objects = UserManager()  # Adicionamos o UserManager
 
     def __str__(self):
-        return self.email
+        return self.username
 
 
 class CentroDeCusto(models.Model):

@@ -7,6 +7,7 @@ import CadColaborador from "./pages/rh/cadColaborador";
 import { ColaboradoresPortaria } from "./pages/colaboradores-portaria";
 import ConsultaEntradas from "./pages/rh/consulta-entrada";
 import PrivateRoute from "./route/privateRoute";
+import Admin from "./pages/Admin";
 
 
 function App() {
@@ -54,11 +55,20 @@ function App() {
             path="/rh/ConsultaEntradas"
             element={
               <PrivateRoute>
-                <ConsultaEntradas />
+                <ConsultaEntradas entradas={[]} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/Admin/CadUsuarios"
+            element={
+              <PrivateRoute>
+                <Admin />
               </PrivateRoute>
             }
           />
         </Routes>
+
       </BrowserRouter>
     </ThemeProvider>
   );

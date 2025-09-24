@@ -74,6 +74,20 @@ export default function Barra_Menu() {
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+               <Button className="w-80 h-14 cursor-pointer hover:bg-red-500 text-3xl font-bold">Admin</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+               <DropdownMenuLabel className="text-2xl">Admin</DropdownMenuLabel>
+               <DropdownMenuGroup>
+                  <DropdownMenuItem className="Drop-Item" onClick={() => navigate('/Admin/CadUsuarios')}>
+                     Cadastro de Usuários
+                  </DropdownMenuItem>
+               </DropdownMenuGroup>
+            </DropdownMenuContent>
+        </DropdownMenu>
       </nav>
 
       
