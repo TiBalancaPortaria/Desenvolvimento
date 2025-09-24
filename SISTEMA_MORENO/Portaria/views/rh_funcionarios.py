@@ -1,3 +1,4 @@
+from Portaria.permissions import IsRH
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import viewsets
@@ -15,7 +16,7 @@ class FuncionarioPagination(PageNumberPagination):
 class RHFuncionarioViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = RHFuncionario.objects.all()
     serializer_class = RHFuncionarioSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsRH]
     pagination_class = FuncionarioPagination  
     http_method_names = ['get']
 

@@ -91,7 +91,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATABASES = {
     "default": {
         "ENGINE": "mssql",  # Certifique-se de que este nome está correto
-        "NAME": "prd_dbmoreno",
+        "NAME": "dev_dbmoreno",
         "USER": "sa",
         "PASSWORD": "dbmoreno@2024",
         "HOST": "192.168.6.63",

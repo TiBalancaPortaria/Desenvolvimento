@@ -1,3 +1,4 @@
+from Portaria.permissions import IsPortaria
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
@@ -20,7 +21,7 @@ class PortariaColaboradorViewSet(viewsets.ModelViewSet):
     serializer_class = PortariaColaboradorSerializer
     http_method_names = ['get', 'post']
     pagination_class = CustomPagination
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsPortaria]
 
     def get_queryset(self):
         # Subquery para pegar o nome do colaborador ativo correspondente ao crachá
