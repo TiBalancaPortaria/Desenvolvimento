@@ -60,7 +60,7 @@ function App() {
             }
           />
           <Route
-            path="/Admin/CadUsuarios"
+            path="/admin/cadusuarios"
             element={
               <PrivateRoute>
                 <Admin />

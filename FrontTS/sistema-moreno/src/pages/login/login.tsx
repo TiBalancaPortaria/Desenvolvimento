@@ -13,7 +13,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
 
@@ -27,10 +27,10 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await signIn({ email, password });
+      await signIn({ username, password });
       navigate("/menu");
     } catch (err) {
-      setAlert("Email ou senha inválidos");
+      setAlert("Usuário ou senha inválidos");
     }
   };
 
@@ -50,10 +50,10 @@ export default function LoginPage() {
           <label className="text-4xl font-mono font-bold">Login</label>
           <form className="flex flex-col justify-center items-center gap-5" onSubmit={handleSubmit}>
             <Input
-              type="email"
-              placeholder="Email"
+              type="text"
+              placeholder="Usuário"
               className="w-[20rem] h-[3.125rem] font-mono text-xl focus:border-red-800 border-black"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
             />
             <Input
               type="password"

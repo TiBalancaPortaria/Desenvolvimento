@@ -82,7 +82,7 @@ export default function Barra_Menu() {
             <DropdownMenuContent className="w-56">
                <DropdownMenuLabel className="text-2xl">Admin</DropdownMenuLabel>
                <DropdownMenuGroup>
-                  <DropdownMenuItem className="Drop-Item" onClick={() => navigate('/Admin/CadUsuarios')}>
+                  <DropdownMenuItem className="Drop-Item" onClick={() => navigate('/admin/cadusuarios')}>
                      Cadastro de Usuários
                   </DropdownMenuItem>
                </DropdownMenuGroup>

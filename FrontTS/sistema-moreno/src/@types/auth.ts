@@ -4,7 +4,7 @@ export type User = {
 }
 
 export type SignInRequest ={
-    email: string
+    username: string
     password: string
 }
 
