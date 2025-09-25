@@ -20,4 +20,5 @@ export interface UserCadastro {
    nome: string;
    email: string;
    password?: string;
+   date_joined: string;
 }

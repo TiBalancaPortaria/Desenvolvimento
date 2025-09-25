@@ -8,6 +8,8 @@ import type { UserCadastro } from "@/@types/types-cadastro";
 import api from "@/axios/api";
 
 
+
+
 const Admin = () => {
   const [usuarios, setUsuarios] = useState<UserCadastro[]>([]);
   const [loading, setLoading] = useState(false);
