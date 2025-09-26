@@ -49,7 +49,7 @@ const Admin = () => {
   if (error) return <p className="p-4 text-red-500">{error}</p>;
 
   return (
-    <main>
+    <main className="bg-slate-300 dark:bg-gray-500 min-h-screen">
       <nav className="bg-gray-400 dark:bg-slate-700 p-4 flex relative justify-center items-center h-16">
         <div className="absolute left-5">
           <ModeToggle />

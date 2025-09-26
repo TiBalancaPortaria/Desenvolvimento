@@ -23,7 +23,7 @@ const ListaDeCadastros = ({ ListaCad }: ListaDeCadastrosProps) => {
 
   return (
     <div>
-      <Table className='bg-gray-200 dark:bg-gray-800'>
+      <Table >
          <TableHeader>
             <TableRow className="bg-gray-400 dark:bg-gray-600">
                <TableHead className='text-black text-xl dark:text-white'>Nome</TableHead>
