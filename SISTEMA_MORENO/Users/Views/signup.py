@@ -1,3 +1,4 @@
+from Users.permissions import IsAdmin
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from Users.auth import Authentication
@@ -5,10 +6,12 @@ from Users.models import User
 from Users.serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 
 
 class SignupView(APIView):
+    permission_classes = [IsAuthenticated, IsAdmin]
     @swagger_auto_schema(
         operation_description="Cria um novo usuário",
         request_body=openapi.Schema(
