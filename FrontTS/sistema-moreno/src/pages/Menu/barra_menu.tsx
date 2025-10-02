@@ -69,7 +69,7 @@ export default function Barra_Menu() {
         </Protected>
 
         {/* Admin - só usuários com grupo 'Admin' */}
-        <Protected permission="ADMINISTRADOR">
+        <Protected permission="Administrador">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button className="w-80 h-14 cursor-pointer hover:bg-red-500 text-3xl font-bold">Admin</Button>
